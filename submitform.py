@@ -41,11 +41,10 @@ def get_data(card):
     br.form["ctl00$AUContent$txt_regid"] = str(card)
     br.form.set_all_readonly(False)
     br.submit()
-
     return br.response().read()
 
+
 if __name__ == "__main__":
-        
     card, name, father = read_excel()
     
     for index in range(len(card)):
@@ -53,7 +52,6 @@ if __name__ == "__main__":
         source = get_data(card[index])
         soup = BeautifulSoup(source, features='lxml')
         mydiv = soup.find_all('div', attrs = {'class' : 'card h-100'})
-
         realdiv = None
         for div in mydiv:   
             realdiv = div
